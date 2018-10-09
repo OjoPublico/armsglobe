@@ -10,16 +10,18 @@ d3.selection.prototype.moveToFront = function() {
     }); 
 }; 
 
+var is_mobile = $(window).width() < 800;
+
 var d3Graphs = {
     barGraphWidth: 300,
 	barGraphHeight: 800,
     barWidth: 14,
 	barGraphTopPadding: 20,
 	barGraphBottomPadding: 50,
-	histogramWidth: 686,
-	histogramHeight: 160,
-	histogramLeftPadding:31,
-	histogramRightPadding: 31,
+	histogramWidth: is_mobile ? $(window).width() - 20 : 720,
+	histogramHeight: is_mobile ? 240 : 160,
+	histogramLeftPadding: is_mobile ? ($(window).width() - 20)  / 18 : 41,
+	histogramRightPadding: is_mobile ? ($(window).width() - 20)  / 6 : 93,
 	histogramVertPadding:20,
 	barGraphSVG: d3.select("#wrapper").append("svg").attr('id','barGraph'),
 	histogramSVG: null,
@@ -29,8 +31,8 @@ var d3Graphs = {
     cumImportLblY: 0,cumExportLblY: 0,
     inited: false,
     histogramOpen: false,
-    handleLeftOffset: 12,
-    handleInterval: 35,
+    handleLeftOffset: is_mobile ? (($(window).width() - 20)  / 18 ) - 12 : 29.75,
+    handleInterval: is_mobile ? (($(window).width() - 20) / 9 ) : 83.5,
     windowResizeTimeout: -1,
     histogramImports: null,
     histogramExports: null,
@@ -46,7 +48,7 @@ var d3Graphs = {
     },
     initGraphs: function() {
         this.showHud();
-        this.drawBarGraph();
+        // this.drawBarGraph();
         this.drawHistogram();
     },
     showHud: function() {
@@ -102,7 +104,7 @@ var d3Graphs = {
         if(year < 100) {
             year = (year * 1) + 1900
         }
-        var index = year - 1992;
+        var index = year - 2010;
         var leftPos = d3Graphs.handleLeftOffset + d3Graphs.handleInterval * index;
         $("#handle").css('left',leftPos+"px");
         d3Graphs.updateViz();
@@ -115,13 +117,13 @@ var d3Graphs = {
         var windowWidth = $(window).width();
         var windowHeight = $(window).height();
         d3Graphs.positionHistory(windowWidth);
-        var minWidth = 1280;
+        var minWidth = 680;
         var minHeight = 860;
         var w = windowWidth < minWidth ? minWidth : windowWidth;
         var hudButtonWidth = 489;
         $('#hudButtons').css('left',w - hudButtonWidth-20);        
         var importExportButtonWidth = $("#importExportBtns").width();
-        $("#importExportBtns").css('left',w-importExportButtonWidth - 20);
+        // $("#importExportBtns").css('left',w-importExportButtonWidth - 20);
         var barGraphHeight = 800;
         var barGraphBottomPadding = 10;
         console.log(windowHeight+ " " + barGraphHeight + " " + barGraphBottomPadding);
@@ -138,9 +140,9 @@ var d3Graphs = {
         */
     },
     positionHistory: function(windowWidth) {
-        var graphIconPadding = 20;
+        var graphIconPadding = 10;
         var historyWidth = $("#history").width();
-        var totalWidth = historyWidth + $("#graphIcon").width() + graphIconPadding;
+        var totalWidth = historyWidth;
 //        var windowWidth = $(window).width();
         var historyLeftPos = (windowWidth - totalWidth) / 2.0;
         var minLeftPos = 280;
@@ -148,7 +150,7 @@ var d3Graphs = {
             historyLeftPos = minLeftPos;
         }
         $("#history").css('left',historyLeftPos+"px");
-        $("#graphIcon").css('left',historyLeftPos + historyWidth + graphIconPadding+'px');
+        $("#graphIcon").css('left',historyLeftPos + historyWidth - graphIconPadding - 42 +'px');
     },
     countryFocus:function(event) {
         //console.log("focus");
@@ -168,9 +170,10 @@ var d3Graphs = {
         yearOffset = yearOffset.substr(0,yearOffset.length-2);
         yearOffset -= d3Graphs.handleLeftOffset;
         yearOffset /= d3Graphs.handleInterval;
-        var year = yearOffset + 1992;
+        var year = yearOffset + 2010;
         
         var country = $("#hudButtons .countryTextInput").val().toUpperCase();
+        
         if(typeof countryData[country] == 'undefined') {
             return;
         }
@@ -285,14 +288,14 @@ var d3Graphs = {
             importArray.push({x: startingImportIndex, y:0});
         }
         for(var i = startingImportIndex + 1; i < numHistory; i++) {
-            var importPrev = historical[startingImportIndex].imports;
+            // var importPrev = historical[startingImportIndex].imports;
             var importCur = historical[i].imports;
-            var importDiff = (importCur - importPrev) / importPrev * 100;
-            importArray.push({x:i, y:importDiff});
-            if(Math.abs(importDiff) > absMax) {
-                absMax = Math.abs(importDiff);
+            // var importDiff = (importCur - importPrev) / importPrev * 100;
+            // importArray.push({x:i, y:importDiff});
+            if(Math.abs(importCur) > absMax) {
+                absMax = Math.abs(importCur);
             }
-            
+            importArray.push({x: i, y: importCur});
         }
         for(var i = 0; i < startingExportIndex; i++) {
         //    exportArray.push(null);
@@ -301,18 +304,23 @@ var d3Graphs = {
             exportArray.push({x: startingExportIndex, y: 0});
         }
         for(var i = startingExportIndex + 1; i < numHistory; i++) {    
-            var exportPrev = historical[startingExportIndex].exports;
+            // var exportPrev = historical[startingExportIndex].exports;
             var exportCur = historical[i].exports;
-            var exportDiff = (exportCur - exportPrev) / exportPrev * 100;
-            exportArray.push({x: i, y: exportDiff}); 
-            if(Math.abs(exportDiff) > absMax) {
-                absMax = Math.abs(exportDiff);
+            // var exportDiff = (exportCur - exportPrev) / exportPrev * 100;
+            // exportArray.push({x: i, y: exportDiff}); 
+            if(Math.abs(exportCur) > absMax) {
+                absMax = Math.abs(exportCur);
             }
+            exportArray.push({x: i, y: exportCur});
             
         }
         this.histogramImportArray = importArray;
         this.histogramExportArray = exportArray;
         this.histogramAbsMax = absMax;
+
+
+        console.log(this.histogramExportArray);
+        console.log(this.histogramImportArray);
     },
     drawHistogram:function() {
         if(this.histogramSVG == null) {
@@ -321,7 +329,7 @@ var d3Graphs = {
         }
         this.setHistogramData();
         
-        this.histogramYScale = d3.scale.linear().domain([this.histogramAbsMax,-this.histogramAbsMax]).range([0, this.histogramHeight - this.histogramVertPadding*2]);
+        this.histogramYScale = d3.scale.linear().domain([this.histogramAbsMax, 0]).range([0, this.histogramHeight - this.histogramVertPadding*2]);
         var maxX = selectedCountry.summary.historical.length - 1;
         this.histogramXScale = d3.scale.linear().domain([0,maxX]).range([0, this.histogramWidth - this.histogramLeftPadding - this.histogramRightPadding]);
         
@@ -361,34 +369,18 @@ var d3Graphs = {
         tickLabels.enter().append('svg:text').attr('class','tickLbl tickLblLeft').attr('text-anchor','end');
         tickLabels.attr('x', d3Graphs.histogramLeftPadding-3).attr('y',function(d) {
             return d3Graphs.histogramYScale(d) + d3Graphs.histogramVertPadding + 4;
-        }).text(function(d) { return Math.abs(d); }).attr('display', function(d) {
-            if(d == 0) { return 'none'; }
-            return null;
-        });
+        }).text(function(d) { return Math.abs(d); }).attr('display','none');
         var tickLabelsRight = this.histogramSVG.selectAll("text.tickLblRight").data(tickData);
         tickLabelsRight.enter().append('svg:text').attr('class','tickLbl tickLblRight');
         tickLabelsRight.attr('x', d3Graphs.histogramWidth - d3Graphs.histogramRightPadding+3).attr('y',function(d) {
             return d3Graphs.histogramYScale(d) + d3Graphs.histogramVertPadding + 4;
-        }).text(function(d) { return Math.abs(d); }).attr('display', function(d) {
+        }).text(function(d) { return 'US$ ' + abbreviateNumber(Math.abs(d)); }).attr('display', function(d) {
             if(d == 0) { return 'none'; }
             return null;
         });
         ticks.exit().remove();
         tickLabels.exit().remove();
         tickLabelsRight.exit().remove();
-        //+ and -
-        var plusMinus = this.histogramSVG.selectAll("text.plusMinus").data(["+","—","+","—"]); //those are &mdash;s
-        plusMinus.enter().append('svg:text').attr('class','plusMinus').attr('text-anchor',function(d,i) {
-            if(i < 2) return 'end';
-            return null;
-        }).attr('x',function(d,i) {
-            var plusOffset = 3;
-            if(i < 2) return d3Graphs.histogramLeftPadding + (d == '+' ? -plusOffset : 0) -2;
-            return d3Graphs.histogramWidth - d3Graphs.histogramRightPadding + (d == '+' ? plusOffset : 0)+2;
-        }).attr('y',function(d,i) {
-            var yOffset = 10;
-            return d3Graphs.histogramYScale(0) + d3Graphs.histogramVertPadding +  6 + (d == '+' ? -yOffset : yOffset); 
-        }).text(String);
         //lines
         var importsVisible = $("#importExportBtns .imports .check").not(".inactive").length != 0;
         var exportsVisible = $("#importExportBtns .exports .check").not(".inactive").length != 0;
@@ -488,10 +480,10 @@ var d3Graphs = {
         }).text(function(d) {
             var numlbl = Math.round(d.y*10)/10;
             var lbl = "";
-            if(d.y > 0) {
-                lbl = "+";
-            }
-            lbl += ""+numlbl+"%";
+            // if(d.y > 0) {
+            //     lbl = "+";
+            // }
+            lbl += "US$ "+abbreviateNumber(numlbl)+"";
             return lbl;
 
         }).attr('visibility', function(d) {
@@ -800,6 +792,7 @@ function abbreviateNumber(value) {
         if (shortValue % 1 != 0)  shortNum = shortValue.toFixed(1);
         newValue = shortValue+suffixes[suffixNum];
     }
-    return '$' + newValue;
+    // return '$' + newValue;
+    return newValue;
 }
 

@@ -12,8 +12,8 @@ var d3Graphs = {
 	barGraphBottomPadding: 50,
 	histogramWidth: 780,
 	histogramHeight: 140,
-	histogramLeftPadding:31,
-	histogramRightPadding: 31,
+	histogramLeftPadding: 41.75,
+	histogramRightPadding: 41.75,
 	histogramVertPadding:10,
 	barGraphSVG: d3.select("body").append("svg"),
 	histogramSVG: null,
@@ -23,8 +23,8 @@ var d3Graphs = {
     cumImportLblY: 0,cumExportLblY: 0,
     inited: false,
     histogramOpen: false,
-    handleLeftOffset: 14,
-    handleInterval: 40,
+    handleLeftOffset: 0,
+    handleInterval: 83.5,
     windowResizeTimeout: -1,
     histogramImports: null,
     histogramExports: null,
@@ -77,8 +77,11 @@ var d3Graphs = {
         if(year < 100) {
             year = (year * 1) + 1900
         }
-        var index = year - 1992;
+        var index = year - 2010;
         var leftPos = d3Graphs.handleLeftOffset + d3Graphs.handleInterval * index;
+        console.log(leftPos);
+        console.log(index);
+        console.log(d3Graphs.handleLeftOffset);
         $("#handle").css('left',leftPos+"px");
         d3Graphs.updateViz();
     },
@@ -113,7 +116,7 @@ var d3Graphs = {
         yearOffset = yearOffset.substr(0,yearOffset.length-2);
         yearOffset -= d3Graphs.handleLeftOffset;
         yearOffset /= d3Graphs.handleInterval;
-        var year = yearOffset + 1992;
+        var year = yearOffset + 2010;
         
         var country = $("#hudHeader .countryTextInput").val().toUpperCase();
         if(typeof countryData[country] == 'undefined') {

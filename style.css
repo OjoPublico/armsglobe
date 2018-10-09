@@ -59,7 +59,15 @@
 }
 
 /* Main Styles */
-body { color:#000000; font-family:'Roboto'; font-size:14px; height:768px; min-width: 1280px; min-height: 860px; overflow: hidden;}
+body {
+    color:#000000;
+    font-family:'Roboto';
+    font-size:14px;
+    height:768px;
+    /* min-width: 1280px; */
+    /* min-height: 860px; */
+    overflow: hidden;
+}
 a { color:#ffffff; text-decoration:none; text-transform:uppercase; }
 a:hover { color:#8eb423; }
 h1 { font-family:'RopaSans'; font-weight:normal; }
@@ -74,6 +82,7 @@ li { list-style-type:none; }
 
 #visualization{
     position: fixed;
+    left: 0;
 }
 
 #dataviz { 				
@@ -123,10 +132,10 @@ li { list-style-type:none; }
     top: 50%;
     left: 50%;
     margin-top: -38px;
-    margin-left: -380px;
+    margin-left: -330px;
     color: white;
     padding: 16px 30px;
-    width: 700px;
+    width: 600px;
     height: 45px;
     line-height: 11px;
 }
@@ -180,12 +189,12 @@ Elements to control the title and country selector
 #hudHeader {
     position: 				absolute;
 /*    width: 					95%; */
-    left: 					30px;
-    top: 					20px;
+    left: 					20px;
+    top: 					60px;
     color: 					#fff;
     font-family: 			'RopaSans';
     display:                none;
-    background: rgba(0,0,0,0.4);
+    /* background: rgba(0,0,0,0.4); */
 }
 #hudHeader h1 {
     font-size: 				32px;
@@ -195,14 +204,16 @@ Elements to control the title and country selector
     float:                  left;
 }
 #hudHeader h1 .subtitle {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 1.35;
     color: #ddd;
-    
+    width: 250px;
+    margin-top: 10px;
 }
 #hudButtons {
     display: none;
     position: absolute;
-    top: 20px;    
+    top: 60px;    
 
     width: 489px;
 }
@@ -279,7 +290,7 @@ Bar graph on left
     opacity: 0.9;
 }
 #barGraph .import.ammo {
-	fill: 					#44B2D4;
+	fill: 					#0000FF;
 }
 #barGraph .import.civ {
 	fill: 					#4679C1;
@@ -288,7 +299,7 @@ Bar graph on left
 	fill:					#1658B2;
 }
 #barGraph .export.ammo {
-	fill: 					#FFA90B;
+	fill: 					#FF0000;
 }
 #barGraph .export.civ {
 	fill: 					#FF7018;
@@ -308,12 +319,12 @@ Bar graph on left
 #barGraph .exportLabel {
     font-family: 			Roboto;
     font-size: 				14px;
-    fill: 					#FFA90B;
+    fill: 					#FF0000;
 }
 #barGraph .importLabel {
     font-family: 			Roboto;
     font-size: 				14px;
-    fill: 					#44B2D4;
+    fill: 					#0000FF;
 }
 #barGraph .barGraphLabelBG {
     fill: rgba(0,0,0,0.8);
@@ -321,39 +332,66 @@ Bar graph on left
 /* histogram and timeline at bottom */
 #history {
     position: 				absolute;
-    bottom: 				0;
+    bottom: 				10px;
     left: 					386px;
     background-color: 		rgba(43,43,43,0.9);
     display: 				none;
 }
 #history ul {
+    padding: relative;
     list-style-type:        none;
-    margin:                 10px;
+    margin:                 10px 0;
     padding:                0;
     padding-bottom:         15px;
     padding-top:            22px;
     color:                  white;
     font-size:              12px;
     font-family:            'Roboto';
-    width:                  668px;
-    background:             url('timelineBG.png') 8px 0 no-repeat; /*to be resized!*/
+    width:                  720px;
+    /* background:             url('timelineBG2.png') 8px 0 no-repeat; */
+    /*to be resized!*/
 }
+
+#history ul::after {
+    position: absolute;
+    content: " ";
+    bottom: 35px;
+    left: 15px;
+    width: calc(100% - 80px);
+    height: 12px;
+    background-color: #4D4D4D;
+    border-radius: 8px;
+    z-index: -1;
+}
+
 #history ul li {
-    width:                  35px;
+    position: relative;
+    width:                  83.5px;
     float:                  left;
     text-align:             center;
     margin-top:             -30px;
     padding-top:            30px;
     cursor:                 pointer;
 }
+#history ul li::after {
+    position: absolute;
+    content: " ";
+    border-radius: 100%;
+    background-color: rgba(255,255,255,0.5);
+    width: 6px;
+    height: 6px;
+    top: 11px;
+    left: calc(50% - 3px);
+}
 #history .timeline #handle {
     cursor:                 pointer;
-    width:                  36px;
-    height:                 36px;
-    background:             url('yearHandle.png') 0px 0 no-repeat;
+    width:                  24px;
+    height:                 24px;
+    background-color: #E4E4E4;
+    border-radius:  100%;
     position:               absolute;
-    bottom:                 20px;
-    left:                   642px;    
+    bottom:                 29px;
+    left:                   614.25px;
 }
 #history .graph {
     display: none;
@@ -372,7 +410,7 @@ Bar graph on left
 #history .labels {
     margin-right: 35px;
 }
-#history .labels .change {
+#history .labels .country {
     font-family: RopaSans;
     font-size: 23px;
     color: white;
@@ -384,14 +422,14 @@ Bar graph on left
     float: right;
     font-family: Roboto;
     font-size: 14px;
-    color:#70B4CB;
+    color:#0000FF;
     margin-top: 10px;
 }
 #history .labels .exports {
     float: right;
     font-family: Roboto;
     font-size: 14px;
-    color: #FFA90B;
+    color: #FF0000;
     margin-top: 10px;
     margin-left: 10px;
 }
@@ -400,10 +438,10 @@ Bar graph on left
     stroke-width: 2px;
 }
 #histogram .export {
-    stroke:         #FFA90B;
+    stroke:         #FF0000;
 }
 #histogram .import {
-    stroke:         #44B2D4;
+    stroke:         #0000FF;
 }
 #histogram .tick {
     fill:           none;
@@ -427,9 +465,10 @@ Bar graph on left
 
 /* import export buttons (bottom right)*/
 #importExportBtns {
-    width:                  298px;
+    width:                  328px;
     position:               absolute;
-    bottom:                 0px;
+    left:                   20px;
+    bottom:                 10px;
     color:                  white;
     display:                none;
 }
@@ -437,16 +476,16 @@ Bar graph on left
     float:                  left;
     width:                  60px;
     text-align:             center;
-    height:                 28px;
+    height:                 23px;
 }
 #importExportBtns .imex>div {
-    background:             #262626;
+    background:             rgba(43,43,43,0.9);
 }
 #importExportBtns .typeLabels div {
     font-family:            'Roboto';
     font-size:              13px;
     text-transform:         uppercase;
-    margin-bottom:-12px;
+    margin-bottom:          -12px;
 }
 
 #importExportBtns .imex>div {
@@ -457,23 +496,18 @@ Bar graph on left
     opacity: 1;
 }
 #importExportBtns>div>.label {
-    width:              98px;
-    height:             25px;
+    width:              153px;
+    height:             23px;
     text-transform:     uppercase;
     font-family:        'Roboto';
-    font-size:          18px;
-    margin-left:        10px;
-    background:         #262626;
+    font-size:          16px;
+    margin-left:        5px;
+    background:         rgba(43,43,43,0.9);
+    color: #fff;
     vertical-align:     middle;
     padding-top:        3px;
 }
-#importExportBtns .imports .label {
-    color:              #44B2D4;
-}
-#importExportBtns .exports .label {
-    color:              #FFA90B;
-}
-#importExportBtns .imports {
+#importExportBtns .exports {
     margin-bottom:      5px;
 }
 #importExportBtns .mil, #importExportBtns .civ {
@@ -482,8 +516,8 @@ Bar graph on left
 #importExportBtns .imex .check {
     width: 16px;
     height: 16px;
-    background: #262626 url('importExportIcons.png') 0 0 no-repeat;
-    margin: 6px auto;
+    background: rgba(43,43,43,0.9) url('importExportIcons.png') 0 0 no-repeat;
+    margin: 4px auto;
 }
 #importExportBtns .imports .mil .check {
     background-position: 0px 0px;
@@ -527,8 +561,8 @@ Bar graph on left
     width: 42px;
     height: 42px;
     position: absolute;
-    bottom: 10px;
-    left: 1255px;
+    bottom: 18px;
+    left: 950px;
     cursor: pointer;
     background: url('graphIcon.png') 0 0 no-repeat;
     display: none;
@@ -541,7 +575,7 @@ Bar graph on left
 #aboutContainer {
     display: none;
     position: absolute;
-    top: 95px;
+    top: 110px;
     width: 350px;
     right: 28px;
     color: white;
@@ -574,7 +608,7 @@ Bar graph on left
     font-size: 15px;
     font-family: Roboto;
     font-weight: bold;
-    color: #FFA90B;
+    color: #FF0000;
 }
 #aboutBox a:hover {
     text-decoration: underline;
@@ -588,12 +622,6 @@ Bar graph on left
     }
     #importExportBtns>div>div {
         width: 23px;
-    }
-    #importExportBtns .imex>div {
-        background: transparent;
-    }
-    #importExportBtns .imex .label {
-        background: #262626;
     }
     #importExportBtns .typeLabels div {
         font-size: 12px;
@@ -612,5 +640,187 @@ Bar graph on left
     }
     #importExportBtns .typeLabels .ammo {
         margin-left: -1px;
+    }
+}
+
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 5000;
+    background-color: #333333;
+    box-shadow: 0 2px 3px rgba(0,0,0,.25);
+}
+
+.header__logo {
+    display: block;
+    float: left;
+    padding: 5px 0;
+    margin-left: 20px;
+}
+
+.header__logo img {
+    height: 40px;
+}
+
+.header__social {
+    float: right;
+    height: 100%;
+    margin: 0;
+    margin-right: 20px;
+}
+
+.header__social__item {
+    display: inline-block;
+    margin: 10px 0;
+    margin-left: 10px;
+    padding: 5px 5px;
+    line-height: 20px;
+    background-color: #000;
+}
+
+.header__social__item a {
+    text-transform: none;
+}
+
+.header__social__item img{
+    vertical-align: middle;
+    height: 20px;
+}
+
+.mobile-extra {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .header {
+        z-index: 20000;
+    }
+    .header__social__item-s {
+        display: none;
+    }
+    body {
+        height: auto;
+        /* min-height: 800px; */
+    }
+    #history {
+        top: 205px;
+        bottom: initial;
+        left: 10px!important;
+        width: calc(100% - 20px);
+    }
+
+    #history .graph {
+        display: block;
+    }
+    
+    #hudButtons {
+        /* display: none!important; */
+        left: 20px!important;
+        top: 140px;
+        width: calc(100% - 40px);
+    }
+    #hudButtons .countryTextInput {
+        width: calc(100% - 87px);
+    }
+    #hudButtons .zoomBtn {
+        display: none!important;
+    }
+    #history ul {
+        width: 100%;
+    }
+    #history ul li {
+        width: calc(100% / 9);
+    }
+    #history ul::after {
+        width: calc((100% * (30 / 36)));
+        left: calc(100% / 36);
+    }
+    #history .close {
+        display: none;
+    }
+
+    #history .timeline #handle {
+        left: calc((100% * (8/ 9)) - 33px);
+    }
+
+    #graphIcon {
+        display: none!important;
+    }
+
+    #hudButtons .countryTextInput {
+        float: left;
+    }
+
+    #hudButtons .armsBtn {
+        margin-bottom: 5px;
+    }
+    
+    #visualization {
+        left: 0;
+    }
+    
+    .header__social {
+        /* display: none; */
+    }
+    #hudHeader .subtitle {
+        display: none;
+    }
+
+    #loading {
+        /* display: none; */
+        width: 80%;
+        margin-left: 10%;
+        left: 0;
+        z-index: 100000;
+        box-sizing: border-box;
+        height: auto;
+        line-height: 1.2;
+    }
+
+    #importExportBtns {
+        left: 10px;
+        top: 546px;
+    }
+
+    #aboutContainer {
+        top: 200px;
+        left: 10px;
+        width: calc(100% - 20px);
+    }
+
+    #aboutBox {
+        width: auto;
+        background-color: #636363;
+    }
+
+    #aboutContainer .arrowUp {
+        border-bottom: 15px solid #636363;
+    }
+
+    .mobile-extra {
+        position: absolute;
+        display: block;
+        top: 655px;
+        left: 10px;
+        width: calc(100% - 20px);
+        z-index: 1001;
+    }
+
+    .mobile-extra img {
+        float: left;
+        width: 120px;
+        margin-right: 10px;
+    }
+
+    .mobile-extra__text {
+        color: #fff;
+    }
+
+    #dataviz {
+        overflow-y: initial;
     }
 }

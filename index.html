@@ -1,27 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Interactive Globe: Small Arms Imports &amp; Exports</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="style.css">
 
-	</head>
+<head>
+	<title>La ruta del comercio global de la madera</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" type="text/css" href="style.css">
 
-	<body onload="start()" id="dataviz" class="">
-		<div id="wrapper">
+	<meta property="fb:app_id" content="" />
+	<meta property="og:url" content="http://ojo-publico.com/sites/apps/la-ruta-del-comercio-global-de-la-madera" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="La ruta del comercio global de la madera" />
+	<meta property="og:description" content="Estos son los envíos de madera a nivel mundial registrados entre el 2010 y julio de 2017. Las exportaciones provenientes de Brasil, Bolivia, Colombia, Ecuador y Perú superan los más de 148 mil envíos." />
+	<meta property="og:image" content="http://ojo-publico.com/sites/apps/la-ruta-del-comercio-global-de-la-madera/iamges/woddenglobe_og.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@Ojo_Publico" />
+
+</head>
+
+<body onload="start()" id="dataviz" class="">
+	<div id="wrapper">
 		<div id="loading">
-			<h2>Loading Small Arms and Ammunition Trade Data from 1992 to 2010. Please wait...</h2>
+			<h2>Cargando datos de La ruta del comercio global de madera...</h2>
 		</div>
 
-		<div >
-			<table id="marker_template" class="marker" style="left:'0px';top:'0px'"><tr><td><span id="countryText" class="country">
-			</span></td><td class="detail" id="detailText">
-			<!--<span id="detailText" class="detail">
-			</span>--></td></tr></table>
+		<div>
+			<table id="marker_template" class="marker" style="left:'0px';top:'0px'">
+				<tr>
+					<td>
+						<span id="countryText" class="country">
+						</span>
+					</td>
+					<td class="detail" id="detailText">
+						<!--<span id="detailText" class="detail"></span>-->
+					</td>
+				</tr>
+			</table>
 		</div>
 
-		<div id="visualization" >
+		<div id="visualization">
 			<!-- 2D overlay elements go in here -->
 
 			<div id="glContainer">
@@ -37,8 +55,8 @@
 		<script src="js/THREEx.WindowResize.js"></script>
 		<script src="js/Stats.js"></script>
 		<script src="js/jquery-1.7.1.min.js"></script>
-    	<script src="js/jquery-ui-1.8.21.custom.min.js"></script>
-    	<script src="js/RequestAnimationFrame.js"></script>
+		<script src="js/jquery-ui-1.8.21.custom.min.js"></script>
+		<script src="js/RequestAnimationFrame.js"></script>
 		<script src="js/ShaderExtras.js"></script>
 		<script src="js/canvg.js"></script>
 		<script src="js/rgbcolor.js"></script>
@@ -128,99 +146,112 @@
 
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
-  			_gaq.push(['_setAccount', 'UA-7963116-1']);
-  			_gaq.push(['_setDomainName', 'chromeexperiments.com']);
-  			_gaq.push(['_trackPageview']);
-			  (function() {
-			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			  })();
+			_gaq.push(['_setAccount', 'UA-7963116-1']);
+			_gaq.push(['_setDomainName', 'chromeexperiments.com']);
+			_gaq.push(['_trackPageview']);
+			(function () {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
 		</script>
+
+		<header class="header">
+			<a href="" class="header__logo">
+				<img src="images/logo-op.png" alt="">
+			</a>
+
+			<ul class="header__social">
+				<li class="header__social__item"><a href="http://www.facebook.com/share.php?u=http://ojo-publico.com/sites/apps/la-ruta-del-comercio-global-de-la-madera" class="popup"><img src="images/facebook.png" alt=""></a></li>
+				<li class="header__social__item"><a href="https://twitter.com/intent/tweet?text=#TerritorioAmazonas La ruta del comercio global de la madera http://ojo-publico.com/sites/apps/la-ruta-del-comercio-global-de-la-madera&via=Ojo_Publico" class="popup"><img src="images/twitter.png" alt=""></a></li>
+				<li class="header__social__item header__social__item-s"><a href="http://ojo-publico.com/ojopublico/suscribete.html" class="popup">Suscríbete</a></li>
+			</ul>
+		</header>
 
 
 		<!-- All other hud can go here-->
-        <div id="hudHeader" class="overlayCountries noPointer">
-            <h1 class="noPointer">Small Arms and Ammunition — Imports & Exports
-                <div class="subtitle">An interactive visualization of government-authorized small arms and ammunition transfers from 1992 to 2010. </div>
+		<div id="hudHeader" class="overlayCountries noPointer">
+			<h1 class="noPointer">LA RUTA DEL COMERCIO GLOBAL DE MADERA
+				<div class="subtitle">Estos son los envíos de madera a nivel mundial registrados entre el 2010 y julio de 2017. Las exportaciones provenientes de Brasil, Bolivia, Colombia, Ecuador y Perú superan los más de 148 mil envíos.</div>
 			</h1>
-        </div>
+		</div>
 
 		<div class="overlayCountries noPointer" id="hudButtons">
-            <input type="button" value="SEARCH" class="searchBtn armsBtn pointer">
-            <input type="text" name="country" class="countryTextInput pointer noMapDrag" value="UNITED STATES">
-            <input type="button" value="—" class="zoomBtn zoomOutBtn armsBtn pointer noMapDrag">
-            <input type="button" value="+" class="zoomBtn zoomInBtn armsBtn pointer noMapDrag">
-            <input type="button" value="ABOUT" class="aboutBtn armsBtn pointer"><br class="clear" />
-        </div>
-        <div id="history" class="overlayCountries noPointer">
-            <div class="graph">
-                <div class="close"></div>
-                <div class="labels">
-                    <div class="change">RELATIVE PERCENT CHANGE</div>
-                    <div class="exports">EXPORTS</div>
-                    <div class="imports">IMPORTS</div><br class="clear" />
-                </div>
-                <div class="container noPointer"></div>
-            </div>
-            <ul class="timeline pointer">
-                <li>1992</li>
-                <li>93</li>
-                <li>94</li>
-                <li>95</li>
-                <li>96</li>
-                <li>97</li>
-                <li>98</li>
-                <li>99</li>
-                <li>2000</li>
-                <li>01</li>
-                <li>02</li>
-                <li>03</li>
-                <li>04</li>
-                <li>05</li>
-                <li>06</li>
-                <li>07</li>
-                <li>08</li>
-                <li>09</li>
-                <li>2010</li>
-                <div id="handle" class="noMapDrag"></div>
-            </ul>
-        </div>
-        <div id="graphIcon" class="overlayCountries"></div>
-        <div id="importExportBtns" class="overlayCountries">
-            <div class="typeLabels">
-                <div class="mil">Military</div>
-                <div class="civ">Civilian</div>
-                <div class="ammo">Ammo</div><br class="clear">
-            </div>
-            <div class="imports imex">
-                <div class="mil"><div class="check"></div></div>
-                <div class="civ"><div class="check"></div></div>
-                <div class="ammo"><div class="check"></div></div>
-                <div class="label">Imports</div><br class="clear">
-            </div>
-            <div class="exports imex">
-                <div class="mil"><div class="check"></div></div>
-                <div class="civ"><div class="check"></div></div>
-                <div class="ammo"><div class="check"></div></div>
-                <div class="label">Exports</div><br class="clear">
-            </div>
-            <br class="clear" />
-        </div>
+			<input type="button" value="BUSCAR" class="searchBtn armsBtn pointer">
+			<input type="text" name="country" class="countryTextInput pointer noMapDrag" value="UNITED STATES">
+			<input type="button" value="—" class="zoomBtn zoomOutBtn armsBtn pointer noMapDrag">
+			<input type="button" value="+" class="zoomBtn zoomInBtn armsBtn pointer noMapDrag">
+			<input type="button" value="INFO" class="aboutBtn armsBtn pointer">
+			<br class="clear" />
+		</div>
+		<div id="history" class="overlayCountries noPointer">
+			<div class="graph">
+				<div class="close"></div>
+				<div class="labels">
+					<div class="country" id="history-country">Perú</div>
+					<!-- <div class="exports">EXPORTACIONES</div>
+					<div class="imports">IMPORTACIONES</div> -->
+					<br class="clear" />
+				</div>
+				<div class="container noPointer"></div>
+			</div>
+			<ul class="timeline pointer">
+				<li>2010</li>
+				<li>2011</li>
+				<li>2012</li>
+				<li>2013</li>
+				<li>2014</li>
+				<li>2015</li>
+				<li>2016</li>
+				<li>2017</li>
+				<div id="handle" class="noMapDrag"></div>
+			</ul>
+		</div>
+		<div id="graphIcon" class="overlayCountries"></div>
+		<div id="importExportBtns" class="overlayCountries">
+			<!-- <div class="typeLabels">
+				<div class="mil">Madera</div>
+				<br class="clear">
+			</div> -->
+			<div class="exports imex">
+				<div class="mil">
+					<div class="check"></div>
+				</div>
+				<div class="label">Exportaciones</div>
+				<br class="clear">
+			</div>
+			<div class="imports imex">
+				<div class="mil">
+					<div class="check"></div>
+				</div>
+				<div class="label">Importaciones</div>
+				<br class="clear">
+			</div>
+		</div>
 
-        <div id="aboutContainer" class='overlayCountries'>
-            <div class="arrowUp"></div>
-            <div id="aboutBox">
-                <div class="title">Information about the data</div>
-                <div class="text">
-                    This data visualization was produced by Google as part of the <a href="http://www.google.com/ideas" target="_blank">Google Ideas</a> INFO (Illicit Networks, Forces in Opposition) Summit with support from the <a href="http://igarape.org.br/" target="_blank">Igarape Institute</a> and data provided by the <a href="http://www.prio.no/" target="_blank">Peace Research Institute Oslo (PRIO)</a> small arms database. The visualization includes >1 million individual import and export data points from annual custom reports and maps the transfer of small arms, light weapons and ammunition across 250 nation states and territories around the world between 1992 and 2010.
-                </div>
-                <div class="links">
-                	<br>
-                    For more info, please see the <a href="http://igarape.org.br/armsglobe" target="_blank">FAQs</a>.
-                </div>
-            </div>
-        </div>
-    </div>
-	</body>
+		<div class="mobile-extra" id="mobile-extra">
+			<img src="images/woddenglobe_ss.png" alt="">
+			<div class="mobile-extra__text">
+				Para visualizar el mapa del comercio global de la madera recomendamos visitar la aplicación desde una computadora.
+			</div>
+		</div>
+
+		<div id="aboutContainer" class='overlayCountries'>
+			<div class="arrowUp"></div>
+			<div id="aboutBox">
+				<div class="title">Información de los datos</div>
+				<div class="text">
+					<p>
+						Ojo-Publico.com presenta un mapa global de la ruta de las exportaciones de madera de cinco países en Latinoamérica entre el 2010 y julio de 2017. Las exportaciones provenientes de Brasil, Bolivia, Colombia, Ecuador y Perú recogen los envíos que contenían productos maderables y su valor FOB en dólares (categoría utilizada para calcular los montos de las exportaciones). Los datos fueron obtenidos a partir de la información que recoge Datasur, empresa que provee información sobre comercio exterior.
+					</p>
+					<p class="source">Fuentes: SUNAT y Datasur</p>
+					<p>
+						El <a href="https://github.com/dataarts/armsglobe">software</a> utilizado y originalmente en <a href="https://armsglobe.chromeexperiments.com/">Arms Globe Visualization</a>, se distribuye bajo la <a href="http://www.apache.org/licenses/LICENSE-2.0">Licencia Apache 2.0</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
 </html>
